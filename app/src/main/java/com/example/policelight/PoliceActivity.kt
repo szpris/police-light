@@ -1,12 +1,9 @@
 package com.example.policelight
 
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -32,12 +29,10 @@ class PoliceActivity : AppCompatActivity() {
 
     // 6种闪烁模式，每帧: [b0, b1, b2, b3, leftScreen, rightScreen]
     private val modes = arrayOf(
-        // ① 红蓝交替
         arrayOf(
             intArrayOf(RED,RED,BLACK,BLACK,RED,BLACK),
             intArrayOf(BLACK,BLACK,BLUE,BLUE,BLACK,BLUE)
         ),
-        // ② 同侧双闪
         arrayOf(
             intArrayOf(RED,RED,BLACK,BLACK,RED,BLACK),
             intArrayOf(BLACK,BLACK,BLACK,BLACK,BLACK,BLACK),
@@ -48,7 +43,6 @@ class PoliceActivity : AppCompatActivity() {
             intArrayOf(BLACK,BLACK,BLUE,BLUE,BLACK,BLUE),
             intArrayOf(BLACK,BLACK,BLACK,BLACK,BLACK,BLACK)
         ),
-        // ③ 左右追逐
         arrayOf(
             intArrayOf(RED,BLACK,BLACK,BLACK,RED,BLACK),
             intArrayOf(BLACK,RED,BLACK,BLACK,RED,BLACK),
@@ -56,7 +50,6 @@ class PoliceActivity : AppCompatActivity() {
             intArrayOf(BLACK,BLACK,BLACK,BLUE,BLACK,BLUE),
             intArrayOf(BLACK,BLACK,BLACK,BLACK,BLACK,BLACK)
         ),
-        // ④ 内外扩散
         arrayOf(
             intArrayOf(BLACK,RED,BLUE,BLACK,RED,BLUE),
             intArrayOf(RED,BLACK,BLACK,BLUE,RED,BLUE),
@@ -65,14 +58,12 @@ class PoliceActivity : AppCompatActivity() {
             intArrayOf(BLACK,RED,BLUE,BLACK,RED,BLUE),
             intArrayOf(BLACK,BLACK,BLACK,BLACK,BLACK,BLACK)
         ),
-        // ⑤ 单灯轮流
         arrayOf(
             intArrayOf(RED,BLACK,BLACK,BLACK,RED,BLACK),
             intArrayOf(BLACK,RED,BLACK,BLACK,RED,BLACK),
             intArrayOf(BLACK,BLACK,BLUE,BLACK,BLACK,BLUE),
             intArrayOf(BLACK,BLACK,BLACK,BLUE,BLACK,BLUE)
         ),
-        // ⑥ 双色同亮
         arrayOf(
             intArrayOf(RED,RED,BLUE,BLUE,RED,BLUE),
             intArrayOf(BLACK,BLACK,BLACK,BLACK,BLACK,BLACK),
@@ -100,28 +91,10 @@ class PoliceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-            window.insetsController?.apply {
-                hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-                systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
-        } else {
-            @Suppress("DEPRECATION")
-            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            )
-        }
-
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         val attrs = window.attributes
         attrs.screenBrightness = 1.0f
         window.attributes = attrs
