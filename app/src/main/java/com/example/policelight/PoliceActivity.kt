@@ -1,10 +1,12 @@
 package com.example.policelight
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class PoliceActivity : AppCompatActivity() {
@@ -18,10 +20,13 @@ class PoliceActivity : AppCompatActivity() {
     private lateinit var bulbs: Array<View>
     private lateinit var leftScreen: View
     private lateinit var rightScreen: View
+    private lateinit var btns: Array<Button>
 
     private val RED   = 0xFFCC1111.toInt()
     private val BLUE  = 0xFF1144CC.toInt()
     private val BLACK = 0xFF000000.toInt()
+    private val BTN_SEL = 0xFF555555.toInt()
+    private val BTN_NOR = 0xFF333333.toInt()
 
     // 6种闪烁模式，每帧: [b0, b1, b2, b3, leftScreen, rightScreen]
     private val modes = arrayOf(
@@ -51,11 +56,11 @@ class PoliceActivity : AppCompatActivity() {
         ),
         // ④ 内外扩散
         arrayOf(
-            intArrayOf(BLACK,RED,BLUE,BLACK,BLACK,BLACK),
-            intArrayOf(RED,BLACK,BLACK,BLUE,BLACK,BLACK),
+            intArrayOf(BLACK,RED,BLUE,BLACK,RED,BLUE),
+            intArrayOf(RED,BLACK,BLACK,BLUE,RED,BLUE),
             intArrayOf(BLACK,BLACK,BLACK,BLACK,BLACK,BLACK),
-            intArrayOf(RED,BLACK,BLACK,BLUE,BLACK,BLACK),
-            intArrayOf(BLACK,RED,BLUE,BLACK,BLACK,BLACK),
+            intArrayOf(RED,BLACK,BLACK,BLUE,RED,BLUE),
+            intArrayOf(BLACK,RED,BLUE,BLACK,RED,BLUE),
             intArrayOf(BLACK,BLACK,BLACK,BLACK,BLACK,BLACK)
         ),
         // ⑤ 单灯轮流
@@ -97,7 +102,6 @@ class PoliceActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        // 最大亮度
         val attrs = window.attributes
         attrs.screenBrightness = 1.0f
         window.attributes = attrs
@@ -111,8 +115,30 @@ class PoliceActivity : AppCompatActivity() {
         leftScreen  = findViewById(R.id.leftScreen)
         rightScreen = findViewById(R.id.rightScreen)
 
-        // 默认从模式0开始
+        btns = arrayOf(
+            findViewById(R.id.btn0), findViewById(R.id.btn1),
+            findViewById(R.id.btn2), findViewById(R.id.btn3),
+            findViewById(R.id.btn4), findViewById(R.id.btn5)
+        )
+        for (i in btns.indices) {
+            btns[i].setOnClickListener { switchMode(i) }
+        }
+        highlightBtn(0)
+
         startFlash()
+    }
+
+    private fun switchMode(mode: Int) {
+        if (mode == currentMode) return
+        currentMode = mode
+        phase = 0
+        highlightBtn(mode)
+    }
+
+    private fun highlightBtn(idx: Int) {
+        for (i in btns.indices) {
+            btns[i].setBackgroundColor(if (i == idx) BTN_SEL else BTN_NOR)
+        }
     }
 
     private fun startFlash() {

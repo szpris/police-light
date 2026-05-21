@@ -6,39 +6,39 @@
     android:background="#000000"
     android:orientation="vertical">
 
-    <!-- 4灯阵列 -->
+    <!-- 4灯灯条 -->
     <LinearLayout
         android:id="@+id/lightBar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:padding="8dp">
 
         <View android:id="@+id/b0" android:layout_width="0dp"
-            android:layout_height="60dp" android:layout_marginEnd="4dp"
+            android:layout_height="match_parent" android:layout_marginEnd="4dp"
             android:layout_weight="1" android:background="#000000"/>
 
         <View android:id="@+id/b1" android:layout_width="0dp"
-            android:layout_height="60dp" android:layout_marginEnd="4dp"
+            android:layout_height="match_parent" android:layout_marginEnd="4dp"
             android:layout_weight="1" android:background="#000000"/>
 
         <View android:id="@+id/b2" android:layout_width="0dp"
-            android:layout_height="60dp" android:layout_marginEnd="4dp"
+            android:layout_height="match_parent" android:layout_marginEnd="4dp"
             android:layout_weight="1" android:background="#000000"/>
 
         <View android:id="@+id/b3" android:layout_width="0dp"
-            android:layout_height="60dp" android:layout_weight="1"
+            android:layout_height="match_parent" android:layout_weight="1"
             android:background="#000000"/>
     </LinearLayout>
 
-    <!-- 全屏左右分屏 -->
+    <!-- 左右分屏 -->
     <LinearLayout
         android:id="@+id/fullScreen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="4"
+        android:orientation="horizontal">
 
         <View android:id="@+id/leftScreen"
             android:layout_width="0dp" android:layout_height="match_parent"
@@ -47,6 +47,65 @@
         <View android:id="@+id/rightScreen"
             android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="1" android:background="#000000"/>
+    </LinearLayout>
+
+    <!-- 模式切换按钮 -->
+    <LinearLayout
+        android:id="@+id/buttonBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:background="#111111">
+
+        <Button android:id="@+id/btn0"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp" android:layout_height="36dp"
+            android:layout_weight="1" android:layout_marginHorizontal="1dp"
+            android:text="红蓝交替" android:textSize="10sp"
+            android:textColor="#FFFFFF" android:background="#333333"
+            android:insetTop="0dp" android:insetBottom="0dp"/>
+
+        <Button android:id="@+id/btn1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp" android:layout_height="36dp"
+            android:layout_weight="1" android:layout_marginHorizontal="1dp"
+            android:text="同侧双闪" android:textSize="10sp"
+            android:textColor="#FFFFFF" android:background="#333333"
+            android:insetTop="0dp" android:insetBottom="0dp"/>
+
+        <Button android:id="@+id/btn2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp" android:layout_height="36dp"
+            android:layout_weight="1" android:layout_marginHorizontal="1dp"
+            android:text="左右追逐" android:textSize="10sp"
+            android:textColor="#FFFFFF" android:background="#333333"
+            android:insetTop="0dp" android:insetBottom="0dp"/>
+
+        <Button android:id="@+id/btn3"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp" android:layout_height="36dp"
+            android:layout_weight="1" android:layout_marginHorizontal="1dp"
+            android:text="内外扩散" android:textSize="10sp"
+            android:textColor="#FFFFFF" android:background="#333333"
+            android:insetTop="0dp" android:insetBottom="0dp"/>
+
+        <Button android:id="@+id/btn4"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp" android:layout_height="36dp"
+            android:layout_weight="1" android:layout_marginHorizontal="1dp"
+            android:text="单灯轮流" android:textSize="10sp"
+            android:textColor="#FFFFFF" android:background="#333333"
+            android:insetTop="0dp" android:insetBottom="0dp"/>
+
+        <Button android:id="@+id/btn5"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp" android:layout_height="36dp"
+            android:layout_weight="1" android:layout_marginHorizontal="1dp"
+            android:text="双色同亮" android:textSize="10sp"
+            android:textColor="#FFFFFF" android:background="#333333"
+            android:insetTop="0dp" android:insetBottom="0dp"/>
     </LinearLayout>
 
 </LinearLayout>
