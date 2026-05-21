@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature android:name="android.hardware.screen.portrait" android:required="false"/>
+
+    <application
+        android:allowBackup="true"
+        android:label="警灯模拟"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PoliceLight">
+
+        <activity
+            android:name=".PoliceActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.PoliceLight">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>

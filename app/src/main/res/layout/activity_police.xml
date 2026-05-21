@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <!-- 4灯阵列 -->
+    <LinearLayout
+        android:id="@+id/lightBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <View android:id="@+id/b0" android:layout_width="0dp"
+            android:layout_height="60dp" android:layout_marginEnd="4dp"
+            android:layout_weight="1" android:background="#000000"/>
+
+        <View android:id="@+id/b1" android:layout_width="0dp"
+            android:layout_height="60dp" android:layout_marginEnd="4dp"
+            android:layout_weight="1" android:background="#000000"/>
+
+        <View android:id="@+id/b2" android:layout_width="0dp"
+            android:layout_height="60dp" android:layout_marginEnd="4dp"
+            android:layout_weight="1" android:background="#000000"/>
+
+        <View android:id="@+id/b3" android:layout_width="0dp"
+            android:layout_height="60dp" android:layout_weight="1"
+            android:background="#000000"/>
+    </LinearLayout>
+
+    <!-- 全屏左右分屏 -->
+    <LinearLayout
+        android:id="@+id/fullScreen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+        <View android:id="@+id/leftScreen"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:background="#000000"/>
+
+        <View android:id="@+id/rightScreen"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:background="#000000"/>
+    </LinearLayout>
+
+</LinearLayout>
